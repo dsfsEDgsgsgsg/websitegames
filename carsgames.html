@@ -1,0 +1,498 @@
+<html lang="he">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סרגל ניווט אופקי</title>
+    <link rel="stylesheet" href="css3.css">
+	
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+	<style>
+	
+	
+	body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(circle at top left, #0e0a1a, #070512 80%);
+  color: #e0e0e0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 0 25px;
+  background: linear-gradient(to right, #0a0816, #0f0a1d);
+  border-bottom: 4px solid #1f51ff;
+  border-radius: 20px;
+  box-shadow: 0 0 30px #1f51ff;
+  direction: rtl;
+}
+
+.title {
+  font-size: 50px;
+  color: #ff0057;
+  padding-inline-start: 100px;
+  margin-top: -5px;
+  text-shadow: 0 0 20px #ff0057;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  height: 320%;
+}
+
+.text {
+  font-size: 88px;
+  color: #ffffff;
+  width: 220px;
+  height: 90px;
+  text-shadow: 0 0 15px #1f51ff;
+   border: none;
+  outline: none;
+   box-shadow: none !important;
+}
+
+.vertical-line {
+  width: 4px;
+  height: 120%;
+  background-color: #1f51ff;
+  margin-left: 1545px;
+  margin-top: -794px;
+  box-shadow: 0 0 20px #1f51ff;
+}
+
+.table-games {
+  background-color: transparent;
+  width: 700px;
+  height: 200px;
+  color: #ffffff;
+  margin-top: 30px;
+  margin-left: 155px;
+}
+
+th {
+  text-align: center;
+  padding: 6px;
+  color: #1f51ff;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 12px #1f51ff;
+  background: transparent;
+  transition: transform 0.3s, color 0.3s;
+}
+
+th:hover {
+  transform: scale(1.1);
+  color: #ff0057;
+  text-shadow: 0 0 15px #ff0057;
+}
+
+img {
+  width: 177px;
+  height: 177px;
+  border: 2px solid #ff0057;
+  border-radius: 50px;
+  margin-left: 10px;
+  margin-top: -8px;
+  box-shadow: 0 0 12px #ff0057;
+  transition: all 0.4s ease;
+}
+
+img:hover {
+  transform: scale(1.1) rotate(1deg);
+  box-shadow: 0 0 35px 10px #1f51ff;
+  outline: 3px solid #1f51ff;
+}
+
+#menu-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-icon {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-icon div {
+  background: #1f51ff;
+  height: 4px;
+  width: 50px;
+  margin: 6px 0;
+  transition: all 0.3s;
+  margin-left: -25px;
+  margin-top: 10px;
+  border: 2px solid #0e0a1a;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #1f51ff;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 330px;
+  height: 100%;
+  background: linear-gradient(to bottom, #100820, #060313);
+  box-shadow: -3px 0 25px #1f51ff;
+  padding: 20px;
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+  z-index: 1000;
+  border-top-left-radius: 12%;
+}
+
+#menu-toggle:checked + .menu-icon + .side-menu {
+  transform: translateX(0);
+}
+
+.side-menu a {
+  display: block;
+  padding: 20px;
+  margin-top: 40px;
+  text-decoration: none;
+  color: #cccccc;
+  border-bottom: 1px solid #1f51ff;
+  font-size: 20px;
+  transition: all 0.3s;
+}
+
+.side-menu a:hover {
+  background: #1f51ff;
+  color: #ff0057;
+  border-radius: 20px;
+  box-shadow: 0 0 12px #1f51ff;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px auto;
+  max-width: 900px;
+  background: rgba(31, 81, 255, 0.06);
+  border-radius: 50px;
+  padding: 10px 20px;
+  box-shadow: 0 0 20px #1f51ff;
+  border: 2px solid #1f51ff;
+  margin-right: 70px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  padding: 10px;
+  background: transparent;
+  direction: rtl;
+  color: #ffffff;
+  width: 900px;
+}
+
+.search-bar button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #ff0057;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.search-bar button:hover {
+  color: #1f51ff;
+}
+
+href {
+  display: block;
+  border: none;
+  width: 1000px;
+  height: 700px;
+}
+
+</style>
+</head>
+<script>
+function searchGames() {
+  const input = document.getElementById("searchInput").value.trim().toLowerCase();
+  const table = document.querySelector(".table-games");
+  const rows = table.querySelectorAll("tr");
+  
+  if (!input) {
+    // אם השדה ריק - מציג הכל
+    rows.forEach(row => {
+      row.querySelectorAll("th").forEach(cell => {
+        cell.style.display = "";
+      });
+    });
+    return;
+  }
+
+  let targetCol = -1;
+
+  // חיפוש העמודה שמכילה את השם
+  for (const row of rows) {
+    const cells = row.querySelectorAll("th");
+    for (let i = 0; i < cells.length; i++) {
+      const text = cells[i].textContent.toLowerCase();
+      if (text.includes(input)) {
+        targetCol = i;
+        break;
+      }
+    }
+    if (targetCol !== -1) break;
+  }
+
+  // אם לא נמצא שם - מציג הכל (לא מסתיר כלום)
+  if (targetCol === -1) {
+    rows.forEach(row => {
+      row.querySelectorAll("th").forEach(cell => {
+        cell.style.display = "";
+      });
+    });
+    return;
+  }
+
+  // הצגת רק את העמודה המתאימה
+  rows.forEach(row => {
+    const cells = row.querySelectorAll("th");
+    cells.forEach((cell, index) => {
+      cell.style.display = (index === targetCol) ? "" : "none";
+    });
+  });
+}
+</script>
+
+
+
+
+<body>
+
+  <div class="header">
+
+  
+  
+    <div class="title">ZAPlay-Play Anytime</div>
+	<div class="search-bar">
+  <input type="text" id="searchInput" oninput="searchGames()" placeholder="חפש משחק...">
+  <button type="button" onclick="searchGames()"><i class="fas fa-search"></i></button>
+</div>
+    <div class="left-section">
+      <div class="divider"></div>
+	  
+      <img
+	  class="text" src="ZAPlay.png" width="234" height="90"></img>
+    </div>
+  </div>
+   <!-- checkbox מוסתר מאחורי הקלעים -->
+  <input type="checkbox" id="menu-toggle" />
+
+  <!-- כפתור המבורגר -->
+  <label class="menu-icon" for="menu-toggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </label>
+
+  <!-- תפריט צד -->
+  <div class="side-menu">
+    <a href="sportsgames.html">בית</a>
+    <a href="sportsgames.html">משחקי ספורט</a>
+    <a href="carsgames.html">משחקי מכוניות</a>
+	<a href="shotsgames.html">משחקי יריות</a>
+    <a href="#">צור קשר</a>
+    <a href="#">אודות</a>
+	
+  </div>
+	
+
+
+  <div>
+    <nav class="navbar-horizontal">
+	
+        <ul>
+            <li><a href="shotsgames.html">יריות</a></li>
+            <li><a href="carsgames.html">מכוניות</a></li>
+            <li><a href="sportsgames.html">ספורט</a></li>
+			<li><a href="puzzlegames.html">פאזל</a></li>
+
+        </ul>
+    </nav>
+	</div>
+	<table class="table-games">
+	
+
+  
+    <th>
+	
+                      <div>
+					  
+  
+  <tr>
+    <th>Cargo Truck simulator</th>
+    <th>Military Vehicle Driving</th>
+    <th>Monster Truck</th>
+    <th>Street Car Racing</th>
+    <th>Mad Car Drive</th>
+    <th>Highway Racer 3D</th>
+  </tr>
+  
+  <th>
+   <a href="play.html?game=https://html5.gamemonetize.co/b3wf02pl29r9phmtmpya454sr6dw1hyp/">
+        <img src="Cargo Truck simulator 2025-512x384.jpg">
+      </a>
+	  </th>
+	  <th>
+      <a href="play.html?game=https://html5.gamemonetize.co/ko9f4fjkf5yghqs0xg6luz1w58pffaa1/">
+        <img src="Military Vehicle Driving Simulation-512x384.jpg">
+      </a>
+    </th>
+
+                    
+					
+    <th>
+	<a href="play.html?game=https://html5.gamemonetize.co/oyql8cwsas24prq2plynllt9trjs0tga/">
+        <img src="Realistic Monster Truck Offroad Simulator-512x384.jpg">
+      </a>
+	  </th>
+  
+  
+    <th>
+	<a href="play.html?game=https://html5.gamemonetize.co/6mpmshr3a56tp1x01u87xfj3i330ucdy/">
+        <img src="Street Car Racing-512x340.jpg">
+      </a>
+	  </th>
+    <th>
+	<a href="play.html?game=https://html5.gamemonetize.co/by7xqtmizsrctwklvb5kkxc797ho45v0/">
+        <img src="Mad Car Drive Future Racing-512x384.jpg">
+      </a>
+	  </th>
+    <th>
+	<a href="play.html?game=https://html5.gamemonetize.co/whsoq6n1ply6s1k4lbjfnwaozsjb26t5/">
+        <img src="Highway Racer 3D-512x340.jpg">
+      </a>
+	  </th>
+  
+  </tr>
+  
+  
+  <tr>
+    <th>Offroad Jeep Hills</th>
+    <th>Ramp race</th>
+    <th>Stunt Sprint</th>
+    <th>Moto Attack</th>
+    <th>Turbo Racer 3D</th>
+    <th>Sports Car Drift</th>
+  <tr>
+  
+  
+  
+  
+  <tr>
+    <th> <a href="play.html?game=https://html5.gamemonetize.co/zwg8qrlmqd5hnbd39kgftqa3lm6htdgp/">
+        <img src="Offroad Jeep Hills Driving-512x384.jpg">
+      </a>
+	  </th>
+    <th>
+	 <a href="play.html?game=https://html5.gamemonetize.co/c32o5le1bu4sxm4xdzwervlir7xw7u99/">
+        <img src="Ramp race-512x340.jpg">
+      </a>
+	  </th>
+    <th>
+	 <a href="play.html?game=https://html5.gamemonetize.co/6wehfwvhqz38sko3kanj7a5btwrrtk6n/">
+        <img src="Stunt Sprint-512x384.jpg">
+      </a>
+	  </th>
+  
+    
+    
+    <th>
+	  <a href="play.html?game=https://html5.gamemonetize.co/3qo6bwp6aea8pj4ntuulxtyqsszn30ns/">
+        <img src="Moto Attack-512x512.jpg">
+      </a>
+	  </th>
+    <th>
+	<a href="play.html?game=https://html5.gamemonetize.co/avkcgcjgjh3tq64xmsdwk9tmyblwyzqh/">
+        <img src="Turbo Racer 3D-512x512.jpg">
+      </a>
+	</th>
+    <th>
+	<a href="play.html?game=https://html5.gamemonetize.co/k135f85agqyhjta4nrrfg18z0huvdvvx/">
+        <img src="Sports Car Drift-512x512.jpg">
+      </a>
+	</th>
+  
+    
+    
+  </tr>
+  
+  
+  
+  <tr>
+    <th>Vehicle Stunts Sky</th>
+    <th>Ramp Bus Stunt</th>
+    <th>Real GT Racing</th>
+    <th>Long Trailer Truck</th>
+    <th>Extreme Car City</th>
+    <th>Formula Championship</th>
+  <tr>
+  
+  
+  
+  
+  <tr>
+    <th>
+	  <a href="play.html?game=https://html5.gamemonetize.co/ousj5se644v7dap2ct2hbr9332glci0h/">
+        <img src="Vehicle Stunts Sky Sim-512x384.jpg">
+      </a>
+	  </th>
+    <th>
+	<a href="play.html?game=https://html5.gamemonetize.co/kt0h2atqrt5kejjevpi97ph6ckg0tw9g/">
+        <img src="Ramp Bus Stunt Simulator-512x384.jpg">
+      </a>
+	  </th>
+    <th>
+	 <a href="play.html?game=https://html5.gamemonetize.co/g4ydbpcjitxu3lo0hndbelk00qae6iut/">
+        <img src="Real GT Racing Simulator-512x512.jpg">
+      </a>
+	  </th>
+  
+    
+    
+    <th>
+	<a href="play.html?game=https://html5.gamemonetize.co/4ljuamwizz9hqo932u4zv7zrbpqlklyr/">
+        <img src="Long Trailer Truck Transport Sim-512x384.jpg">
+      </a>
+	  </th>
+    <th>
+	      <a href="play.html?game=https://html5.gamemonetize.co/h5olfnxppyvcls3lqcczan5wwm4r4rbz/">
+        <img src="Extreme Car City Driving-512x384.jpg">
+      </a>
+
+</th>
+    <th>
+	<a href="play.html?game=https://html5.gamemonetize.co/t2k033u0g3n11gnyyur592liam2k86wc/">
+        <img src="GT Formula Championship-512x384.jpg">
+      </a>
+	  </th<
+  
+    
+    
+  </tr>
+  
+  
+  
+</table>
+
+
+	<div class="vertical-line">
+
+</body>
+</html>

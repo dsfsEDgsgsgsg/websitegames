@@ -1,0 +1,44 @@
+.navbar-horizontal {
+    background-color: #0e0a1a; /* רקע כהה תואם לכל האתר */
+    overflow: hidden;
+    width: 1420px;
+    height: 51px;
+    margin-left: 60px;
+    margin-top: 30px;
+    border-radius: 20px;
+    border: 2px solid #1f51ff; /* גבול כחול זוהר */
+    box-shadow: 0 0 12px #1f51ff;
+}
+
+.navbar-horizontal ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-horizontal li {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.navbar-horizontal a {
+    display: block;
+    background-color: transparent; /* שקוף כדי להרגיש חלק מהרקע */
+    color: #1f51ff;                /* טקסט בכחול זוהר */
+    border-radius: 10px;
+    text-decoration: none;
+    padding: 14px 20px;
+    font-size: 20px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px #1f51ff;
+}
+
+.navbar-horizontal a:hover {
+    background-color: #ff0057; /* אדום לייזר בהובר */
+    color: #0e0a1a;            /* טקסט כהה כשברקע בהיר */
+    border-color: #1f51ff;     /* גבול כחול */
+    transform: scale(1.07);
+    box-shadow: 0 0 15px 3px #ff0057;
+}
